@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Exchange - Учебный проект</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Хедер -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <h1 class="header__logo">🔄 CryptoExchange</h1>
+                <span class="header__badge">Demo Mode</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Главная секция с калькулятором -->
+    <main class="main">
+        <div class="container">
+            <!-- Калькулятор обмена -->
+            <section class="exchange-calculator card">
+                <h2 class="section-title">Калькулятор обмена</h2>
+                
+                <div class="exchange-form">
+                    <div class="exchange-input-group">
+                        <label class="form-label">Отдаете</label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="number" 
+                                id="amountFrom" 
+                                class="form-control" 
+                                placeholder="0.00"
+                                min="0"
+                                step="0.01"
+                            >
+                            <select id="currencyFrom" class="form-control currency-select">
+                                <option value="BTC">BTC - Bitcoin</option>
+                                <option value="ETH">ETH - Ethereum</option>
+                                <option value="USDT">USDT - Tether</option>
+                                <option value="USD" selected>USD - US Dollar</option>
+                                <option value="EUR">EUR - Euro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="exchange-icon">⇅</div>
+
+                    <div class="exchange-input-group">
+                        <label class="form-label">Получаете</label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="number" 
+                                id="amountTo" 
+                                class="form-control" 
+                                placeholder="0.00"
+                                readonly
+                            >
+                            <select id="currencyTo" class="form-control currency-select">
+                                <option value="BTC" selected>BTC - Bitcoin</option>
+                                <option value="ETH">ETH - Ethereum</option>
+                                <option value="USDT">USDT - Tether</option>
+                                <option value="USD">USD - US Dollar</option>
+                                <option value="EUR">EUR - Euro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="exchange-rate" id="exchangeRate">
+                        Курс: 1 USD = 0.00002893 BTC
+                    </div>
+
+                    <button class="btn btn--primary btn--full-width" id="createExchangeBtn">
+                        Создать заявку на обмен
+                    </button>
+                </div>
+            </section>
+
+            <!-- Форма заявки (модальное окно) -->
+            <div id="exchangeModal" class="modal">
+                <div class="modal__content card">
+                    <span class="modal__close">&times;</span>
+                    <h3 class="section-title">Заявка на обмен</h3>
+                    
+                    <form id="exchangeForm">
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input 
+                                type="email" 
+                                id="userEmail" 
+                                class="form-control" 
+                                placeholder="your@email.com"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Адрес кошелька получателя</label>
+                            <input 
+                                type="text" 
+                                id="walletAddress" 
+                                class="form-control" 
+                                placeholder="0x... или bc1..."
+                                required
+                            >
+                        </div>
+
+                        <div class="exchange-summary">
+                            <div class="summary-row">
+                                <span>Отдаете:</span>
+                                <strong id="summaryFrom">-</strong>
+                            </div>
+                            <div class="summary-row">
+                                <span>Получаете:</span>
+                                <strong id="summaryTo">-</strong>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn--primary btn--full-width">
+                            Подтвердить обмен
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- История транзакций -->
+            <section class="transaction-history card">
+                <h2 class="section-title">История операций</h2>
+                <div class="table-wrapper">
+                    <table class="transaction-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Дата</th>
+                                <th>Направление</th>
+                                <th>Сумма</th>
+                                <th>Статус</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionTableBody">
+                            <!-- Заполняется JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <p>⚠️ Учебный проект. Не используйте для реальных транзакций.</p>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
